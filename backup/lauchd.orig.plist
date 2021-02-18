@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Label</key>
+		<string>local.backup</string>
+
+		<key>EnvironmentVariables</key>
+		<dict>
+			<key>RESTIC_PASSWORD</key>
+			<string>{password}</string>
+			<key>PATH</key>
+			<string>/bin:/usr/bin:/usr/local/bin</string>
+		</dict>
+
+		<key>ProgramArguments</key>
+		<array>
+			<string>/usr/local/bin/restic</string>
+			<string>backup</string>
+			<string>-r={repository}</string>
+			<string>{location}</string>
+			<string>--exclude='.DS_Store'</string>
+			<string>--exclude='.data'</string>
+		</array>
+
+		<key>WorkingDirectory</key>
+		<string>{home}</string>
+
+		<key>NumberOfProcesses</key>
+		<integer>1</integer>
+
+		<key>StandardErrorPath</key>
+		<string>{home}/Library/Logs/backup.stderr.log</string>
+		<key>StandardOutPath</key>
+		<string>{home}/Library/Logs/backup.stdout.log</string>
+
+		<key>StartCalendarInterval</key>
+		<dict>
+			<key>Hour</key>
+			<integer>18</integer>
+			<key>Minute</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+</plist>
